@@ -6,6 +6,8 @@ from app.routers import controls
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="CCM Platform", version="0.1.0")
+from fastapi.staticfiles import StaticFiles
+app.mount("/", StaticFiles(directory="app/static", html=True), name="static")
 from fastapi.middleware.cors import CORSMiddleware
 app.add_middleware(
     CORSMiddleware,
